@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>clip效果图</title>
+</head>
+
+<style type="text/css">
+body{background: #333;margin:0;padding:0;}
+.example{position: absolute;top:100px;left:100px;width:500px;height:501px;}
+
+img,#main{
+	position: absolute; left:0; right:0 ;top:0; bottom:0;
+	z-index: 1;
+}
+.img1{
+	opacity: 0.5;
+}
+.img2{
+	clip:rect(0px,200px,200px,0px);  /*所有主流浏览器都支持 clip 属性。(css2)*/
+}
+#main{
+	width: 200px; height: 200px;
+	border:1px solid white;
+}
+
+/*控制点定位 */
+.minDiv{
+	position:absolute; 
+	width: 8px; height: 8px;
+	background-color:#fff;
+}
+.minDiv.left-up{top:-4px;left: -4px;cursor:nw-resize;}
+.minDiv.left{top:50%;margin-top:-4px;left: -4px;cursor:e-resize;}
+.minDiv.left-down{bottom:-4px;left: -4px;cursor:sw-resize;}
+.minDiv.top{top:-4px;left: 50%;margin-left:-4px;cursor:n-resize;}
+.minDiv.right-up{top:-4px;right: -4px;cursor:ne-resize;}
+.minDiv.right{top:50%;margin-top:-4px;right: -4px;cursor:e-resize;}
+.minDiv.right-down{bottom:-4px;right: -4px;cursor:se-resize;}
+.minDiv.bottom{bottom:-4px;left: 50%;margin-left:-4px;cursor:s-resize;}
+
+#preview{
+    position: absolute;
+    width: 642px;
+    height: 644px;
+    top: 100px;
+    left: 670px;
+}
+#preview img{
+    position: absolute;
+    clip:rect(0,200px,200px,0);
+}
+</style>
+
+<body>
+	<div id="example" class="example">
+		<!-- 底层 -->
+		<img class="img1" src="pic.jpg"/>
+		<!-- 裁切层 -->
+		<img class="img2"  id="img2"  src="pic.jpg"/>
+		<!-- 选择框 -->
+		<div id="main">
+			<div id="left-up" class="minDiv left-up"></div>
+			<div id="left" class="minDiv left"></div>
+			<div id="left-down" class="minDiv left-down"></div>
+			<div id="up" class="minDiv top"></div>
+			<div id="right-up" class="minDiv right-up"></div>
+			<div id="right" class="minDiv right"></div>
+			<div id="right-down" class="minDiv right-down"></div>
+			<div id="down" class="minDiv bottom"></div>
+		</div>
+	</div>
+    <div id="preview">
+        <img id="previewImg" src="pic.jpg" alt="preview"/>
+    </div>
+
+
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
